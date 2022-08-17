@@ -1,0 +1,72 @@
+[position >= 55 & position <= 98 & firstRoll > 0 & firstRoll < 7 & secondRoll > 0 & secondRoll < 7]
+roll = firstRoll
+[position < 100]
+WHILE (roll > 0)  & ((position + roll) <= 100) DO	
+	[position < 100 & ((roll > 0) ) & ((position + roll) <= 100)]
+	IF 
+		(position + roll) = 63)    
+	THEN
+		[(position + roll) = 63]
+		position = 60
+		[position < 100]
+	ELSE
+		[(position + roll) != 63]
+		IF
+			(position + roll) = 56
+		THEN
+			[(position + roll) = 56]
+			position = 84
+			[position < 100]   
+		ELSE
+			[(position + roll) != 56]
+			position = position + roll;
+			[position < 100]
+		END
+		[position < 100]
+	END	
+	[position < 100]
+	roll = 0;	
+	[position < 100]
+END
+[position >= 94 & position <= 99]
+roll = secondRoll;
+[position <= 100]
+WHILE (roll > 0)  & ((position + roll) <= 100) DO	
+	[position <= 100 & ((roll > 0) ) & ((position + roll) <= 100)]
+	IF 
+		(position + roll) = 97)    
+	THEN
+		[(position + roll) = 97]
+		position = 75
+		[position <= 100]
+	ELSE
+		[(position + roll) != 63]
+		IF
+			(position + roll) = 56
+		THEN
+			[(position + roll) = 56]
+			position = 84
+			[position <= 100]   
+		ELSE
+			[(position + roll) != 56]
+			position = position + roll;
+			[position <= 100]
+		END
+		[position <= 100]
+	END	
+	[position <= 100]
+	roll = 0;	
+	[position <= 100]
+END
+[position=100 & firstRoll>0 & firstRoll<7 & secondRoll>0 & secondRoll<7]
+
+
+To reach the finishing square 100 in exactly 2 moves only, the user must be in a certain range of squares. In order to achieve this i have chosen the range from 55 to 98.
+The ladders are also considered while making the two moves.
+I have used assumed true values for snake's head and ladder's bottom position and simulated it according to that particalular value for each of the 2 moves.
+The outer if condition checks whether the move is made onto a snakes head, else the next nested if condition is valid if the next move is to a ladder's bottom.
+
+Further, simplifying the above equation in the form [A] roll:=firstRoll; P; roll:=secondRoll; P [B] we can obtain the below simplified hoare triple.
+
+
+[position>=55 & position<=98 & firstRoll>0 & firstRoll<7 & secondRoll>0 & secondRoll<7] roll = firstRoll; P; roll = secondRoll; P; [position=100 & firstRoll>0 & firstRoll<7 & secondRoll>0 & secondRoll<7]

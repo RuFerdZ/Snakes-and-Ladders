@@ -1,0 +1,22 @@
+WHILE 
+	(roll > 0) & ((position + roll) <= 100)
+DO	
+	IF 
+		(position + roll) : dom(SNAKES)
+	THEN
+		position = SNAKES(position + roll)
+	ELSE
+		IF
+			(position + roll) : dom(LADDERS)
+		THEN
+			position = LADDERS(position + roll)
+		ELSE
+			position = position + roll;
+		END
+	END	
+	roll = 0;	
+END
+
+
+
+As the while model is for a single move i have used the while condition to be roll greater than 0 and the new position after the roll should be less than 100. Once a successful move has been made, the roll value will be assigned with 0 so that the loop wont repeat again as the (roll > 0) will return a false and the overall while condition will be false. A sucessful move can be consiedered as going to a normal square, going up a ladder or going down a snake, and the position will be updated accordingly. Invalid position movement will not be made as it is been checked by the ((position + roll) <= 100) condition.
